@@ -4,7 +4,7 @@ import React from "react";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen w-full sm:h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden bg-black text-white">
+    <section className="relative h-screen w-full sm:h-[595px] md:h-[700px] lg:h-[800px] overflow-hidden bg-black text-white">
       {/* Background Video */}
       <video
         autoPlay
