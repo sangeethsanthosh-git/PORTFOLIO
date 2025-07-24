@@ -24,10 +24,11 @@ export default function About() {
 
       {/* CTA */}
       <a href="#project">
-        <button className="mt-8 border border-white text-white px-6 py-2 rounded-full text-sm hover:bg-white hover:text-black transition">
-        See My Work
-      </button>
-      </a>
+  <button className="mt-8 bg-white text-black px-6 py-2 rounded-full text-sm hover:bg-black hover:text-white border border-white transition">
+    See My Work
+  </button>
+</a>
+
     </section>
   );
 }

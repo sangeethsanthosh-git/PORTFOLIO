@@ -32,8 +32,7 @@ export default function HeroSection() {
       {/* Bottom-right short description */}
       <div className="absolute bottom-12 right-6 md:right-12 z-10 max-w-sm text-sm md:text-base text-gray-200 text-right">
         <p>
-          I’m a digital designer & developer building smooth, responsive, and
-          impactful web experiences.
+          DEV
         </p>
       </div>
 

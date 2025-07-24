@@ -12,8 +12,7 @@ const skillRows = [
       { name: "Next.js", icon: "/skills/nextjs.png" },
       { name: "VS Code", icon: "/skills/vscode.png" },
       { name: "Git", icon: "/skills/git.png" },
-      { name: "Bootstrap", icon: "/skills/bootstrap.png" },
-      { name: "Apache Server", icon: "/skills/apache.png" },
+      
     ],
   },
   {
@@ -42,7 +41,7 @@ const skillRows = [
 
 export default function Skills() {
   return (
-    <section className="bg-black text-white py-20" id="skills">
+    <section className="bg-black text-white py-8" id="skills">
       
 {/* Section Label */}
 

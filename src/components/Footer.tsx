@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="flex flex-col lg:flex-row justify-between gap-16">
         {/* Left: Main Heading */}
         <div className="text-[48px] md:text-[80px] font-extrabold leading-none">
-          DROP US<br />A LINE
+          GET IN<br />TOUCH
         </div>
 
         {/* Right: Social Links */}
@@ -86,11 +86,7 @@ export default function Footer() {
 
       {/* Bottom section */}
       <div className="mt-6 flex flex-col md:flex-row justify-between text-xs text-gray-600">
-        <p>© 2025 Sangeeth Santhosh</p>
-        <div className="flex gap-4 mt-2 md:mt-0">
-          <Link href="#">Privacy Policy</Link>
-          <Link href="#">Terms of Use</Link>
-        </div>
+        <p>© 2025sangeethsanthoshsa</p>
       </div>
     </footer>
   );
