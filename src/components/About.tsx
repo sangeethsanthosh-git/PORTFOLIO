@@ -1,7 +1,7 @@
 "use client";
 
 
-export default function AboutSection() {
+export default function About() {
   return (
     <section id="about" className="bg-black text-white px-6  py-20">
       {/* Section Label */}

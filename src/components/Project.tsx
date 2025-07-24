@@ -37,8 +37,7 @@ export default function Projects() {
   };
 
   return (
-    <section
-      className="relative min-h-[100svh] lg:h-screen w-full text-white overflow-hidden"
+    <section id="project" className="relative min-h-[100svh] lg:h-screen w-full text-white overflow-hidden"
       style={{ backgroundImage: `url(${activeProject.bg})`, backgroundSize: "cover", backgroundPosition: "center" }}
     >
       
