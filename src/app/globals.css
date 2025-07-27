@@ -92,4 +92,12 @@ html {
 .animate-marquee {
   animation: marquee 14s linear infinite;
 }
-
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/noise.gif");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
