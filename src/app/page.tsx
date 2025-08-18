@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 //import Menu from "@/components/Menu";
 import About from "@/components/About";
@@ -14,9 +14,13 @@ import Experience from "@/components/Experience";
 import HeroSection from "@/components/HeroSection"; // Assuming you already have this
 
 export default function Home() {
+  useEffect(() => {
+    // Scroll to top when page loads or refreshes
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
-      <Navbar />
+    <Navbar />
       <HeroSection />
       <About />
       <Education />

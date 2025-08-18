@@ -6,34 +6,34 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const works = [
   {
-    title: "nomad",
-    subtitle: "SWISS CABIN",
-    info: "BOOKINGS START MAY 5TH",
-    bg: "/images/proj1.jpg",
+    title: "Client Website Builds",
+    subtitle: "Tailored • Business •  Website",
+    info: "Custom websites for various clients",
+    bg: "/images/service2.png",
+    textColor: "text-white",
+    overlay: "bg-black/20",
+  },
+  {
+    title: "Portfolio site building",
+    subtitle: "DESIGN • DEVELOP • DEPLOY",
+    info: "Personal portfolio showcasing skills",
+    bg: "/images/service1.png",
+    textColor: "text-white",
+    overlay: "bg-black/20",
+  },
+  {
+    title: "E-commerce Website",
+    subtitle: "Shopify • WooCommerce • Custom",
+    info: "Built an e-commerce platform for a local business",
+    bg: "/images/service3.png",
     textColor: "text-white",
     overlay: "bg-black/40",
   },
   {
-    title: "nomad",
-    subtitle: "FIND • REFUGE • IN • SOLITUDE",
-    info: "HIDE • SEEK",
-    bg: "/images/mountain.jpg",
-    textColor: "text-white",
-    overlay: "bg-[#d8a87a]/90",
-  },
-  {
-    title: "nomad",
-    subtitle: "NEW LISTING",
-    info: "SWISS • CABIN",
-    bg: "/images/fern.jpg",
-    textColor: "text-white",
-    overlay: "bg-black/30",
-  },
-  {
-    title: "nomad",
-    subtitle: "SINCE 1985",
-    info: "46°N 08°E",
-    bg: "/images/tree-texture.jpg",
+    title: "Teaching Assistance",
+    subtitle: "One-on-One Concept Clarification",
+    info: "Explained projects, logic, and implementation",
+    bg: "/images/service4.png",
     textColor: "text-white",
     overlay: "bg-black/30",
   },
@@ -52,8 +52,10 @@ export default function Work() {
   };
 
   return (
-    <section id="work" className="w-full py-16 bg-[#f4f1ec] relative">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="work" className="work-section w-full py-16 bg-[#2a2a2a] relative">
+      <div className="max-w-6xl mx-auto px-4 ">
+        {/* Overlay */}
+  <div className="absolute inset-0 bg-black/40 z-0" />
 
         {/* Slide Arrows (desktop only) */}
         <button

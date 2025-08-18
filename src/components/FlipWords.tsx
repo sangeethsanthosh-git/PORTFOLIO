@@ -16,7 +16,7 @@ export default function FlipWords() {
   }, []);
 
   return (
-    <div className="h-[40px] overflow-hidden text-[#f5e7c6] text-2xl font-bold">
+    <div className="h-[40px] overflow-hidden text-[#f9f5ed] text-2xl font-bold">
       <AnimatePresence mode="wait">
         <motion.div
           key={index}

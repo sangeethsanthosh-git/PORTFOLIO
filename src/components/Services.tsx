@@ -17,8 +17,8 @@ export default function Services() {
   }, []);
 
   return (
-    <section className="py-18 bg-black flex items-center justify-center">
-      <div className="h-[100px] overflow-hidden text-white text-5xl font-bold tracking-widest flex items-center justify-center">
+    <section className="py-18 bg-black flex items-center justify-center" id="services">
+      <div className="h-[100px] overflow-hidden text-[#f9f5ed] text-5xl font-bold tracking-widest flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}

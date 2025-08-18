@@ -12,6 +12,8 @@ const skillRows = [
       { name: "Next.js", icon: "/skills/nextjs.png" },
       { name: "VS Code", icon: "/skills/vscode.png" },
       { name: "Git", icon: "/skills/git.png" },
+      { name: "Figma", icon: "/skills/figma.png" },
+      { name: "Canva", icon: "/skills/canva.png" },
       
     ],
   },
@@ -24,24 +26,17 @@ const skillRows = [
       { name: "MySQL", icon: "/skills/mysql.png" },
       { name: "Postman", icon: "/skills/postman.png" },
       { name: "PostgreSQL", icon: "/skills/postgresql.png" },
-    ],
-  },
-  {
-    category: "Design & Currently Learning",
-    items: [
-      { name: "Figma", icon: "/skills/figma.png" },
-      { name: "Canva", icon: "/skills/canva.png" },
       { name: "TypeScript", icon: "/skills/typescript.png" },
       { name: "Tailwind CSS", icon: "/skills/tailwind.png" },
       { name: "Framer Motion", icon: "/skills/framer.png" },
-      
     ],
   },
+  
 ];
 
 export default function Skills() {
   return (
-    <section className="bg-black text-white py-8" id="skills">
+    <section className="bg-[black] text-white py-8 opacity-90" id="skills">
       
 {/* Section Label */}
 
@@ -49,8 +44,8 @@ export default function Skills() {
         {skillRows.map((row, index) => (
           <div key={row.category} className="relative overflow-hidden group h-20">
             {/* Optional fade edges */}
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[black] to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[black] to-transparent z-10" />
 
             <div
               className={`flex w-max gap-6 absolute top-0 ${
@@ -60,7 +55,7 @@ export default function Skills() {
               {[...row.items, ...row.items, ...row.items].map((skill, i) => (
                 <div
                   key={`${skill.name}-${i}`}
-                  className="flex items-center gap-2 bg-white text-black rounded-full px-4 py-2 shadow-md min-w-fit"
+                  className="flex items-center gap-2 bg-[#f9f5ed] text-[#2a2a2a] rounded-full px-4 py-2 shadow-md min-w-fit"
                 >
                  <Image
   src={skill.icon}

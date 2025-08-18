@@ -1,10 +1,38 @@
+/* ✅ Always import Google Fonts at the very top */
+@import url("https://fonts.googleapis.com/css2?family=Bit+Count+Mono&family=Poppins&family=Caveat&family=Manjari&family=Coiny&family=Nanum+Myeongjo&family=Rubik&display=swap");
+
 @import "tailwindcss";
 
+/* Font Classes */
+.font-bitcount {
+  font-family: "Bit Count Mono", monospace;
+}
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+.font-caveat {
+  font-family: "Caveat", cursive;
+}
+.font-manjari {
+  font-family: "Manjari", sans-serif;
+}
+.font-coiny {
+  font-family: "Coiny", cursive;
+}
+.font-nanum {
+  font-family: "Nanum Myeongjo", serif;
+}
+.font-rubik {
+  font-family: "Rubik", sans-serif;
+}
+
+/* Root color tokens */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Inline Theme Tokens */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,6 +40,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,16 +48,18 @@
   }
 }
 
+/* Global styles */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Grid background pattern */
 .bg-grid-pattern {
   background-color: #0e0e0a;
-  background-image: linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -38,7 +69,7 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and WebKit browsers */
+  display: none; /* Chrome, Safari, WebKit */
 }
 
 /* Scroll animation (not used but retained) */
@@ -53,11 +84,11 @@ body {
     transform: translateY(0);
   }
 }
-
 .animate-scroll-y {
   animation: scroll-y 12s ease-in-out infinite;
 }
-/* Minimal glassmorphism style */
+
+/* Glassmorphism effect */
 .glassmorphism {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
@@ -66,10 +97,13 @@ body {
   border-radius: 8px;
   padding: 8px 12px;
 }
+
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
-/* Infinite scroll left to right */
+
+/* Marquee animations */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -78,8 +112,6 @@ html {
     transform: translateX(-33.333%);
   }
 }
-
-/* Infinite scroll right to left */
 @keyframes marquee-reverse {
   0% {
     transform: translateX(0%);
@@ -88,16 +120,23 @@ html {
     transform: translateX(33.333%);
   }
 }
-
 .animate-marquee {
   animation: marquee 14s linear infinite;
 }
+
+/* Noise background overlay */
 .noise-bg::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/images/noise.gif");
+  background-image: url("/images/bg.gif");
   opacity: 0.04;
   pointer-events: none;
   z-index: 1;
+}
+.work-section {
+  background-image: url('/images/download.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
