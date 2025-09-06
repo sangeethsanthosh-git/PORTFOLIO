@@ -26,7 +26,7 @@ const projects = [
         content without permission may violate YouTube&apos;s terms of service.
       </span>
     </>),
-    bg: "/images/glomatic-30.jpeg",
+    bg: "/images/Glomatic-28.jpeg",
     image: "/images/youtube.gif",
     github: "https://github.com/your/project2",
     status: "completed",
