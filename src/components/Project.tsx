@@ -26,7 +26,7 @@ const projects = [
         content without permission may violate YouTube&apos;s terms of service.
       </span>
     </>),
-    bg: "/images/Glomatic-26.jpg",
+    bg: "/images/youtube.gif",
     image: "/images/youtube.gif",
     github: "https://github.com/your/project2",
     status: "completed",
@@ -35,7 +35,7 @@ const projects = [
     title: "AeroSence",
     description:
       "Aerosence is a Python-based web application built using Django that predicts weather conditions, air quality index(AQI) and provides real-time weather updates via the OpenWeather API.",
-    bg: "/images/glomatic_21.jpg",
+    bg: "/images/aerosence.gif",
     image: "/images/aerosence.gif",
     github: "https://github.com/your/project2",
     status: "completed",
@@ -43,7 +43,7 @@ const projects = [
   {
     title: "EchoNotes",
     description: "EchoNotes is a Flask/Django-based web application that converts speech into text notes. Users can either record live audio through their browser microphone or upload audio files (MP3/WAV), and EchoNotes will instantly transcribe them into clean, readable notes.",
-    bg: "/images/glomatic_08.jpg",
+    bg: "/images/echonotes.gif",
     image: "/images/echonotes.gif",
      //github: "https://github.com/your/project2",
     //live: "https://yourproject2.com",
@@ -52,7 +52,7 @@ const projects = [
   {
     title: "Portfolio",
     description: "This project is a personal portfolio website built to showcase my skills, projects, services, and experience as a web developer and designer. The website is modern, responsive, and interactive, designed to provide a smooth user experience while highlighting my work and capabilities.",
-    bg: "/images/glomatic_27.jpg",
+    bg: "/images/portfolio.gif",
     image: "/images/portfolio.gif",
     live: "https://sangeethsanthoshsa.vercel.app",
     status: "completed",
