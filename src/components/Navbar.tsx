@@ -55,35 +55,36 @@ export default function Nav() {
           colorMap[active] || "text-[#225424]"
         }`}
       >
-        Sangeeth
+        S.S
       </div>
 
       {/* Desktop Menu */}
-      <nav className="hidden md:flex gap-8 text-sm font-light">
-        {sections.map((id) => (
-          <Link
-            key={id}
-            href={`#${id}`}
-            className={`hover:underline transition-colors ${
-              active === id ? colorMap[id] : "text-[#225424]"
-            }`}
-          >
-            {id === "work" ? "Services/Work" : id.charAt(0).toUpperCase() + id.slice(1)}
-          </Link>
-        ))}
+<nav className="hidden md:flex gap-8 text-sm font-light items-center">
+  {sections.map((id) => (
+    <Link
+      key={id}
+      href={`#${id}`}
+      className={`hover:underline transition-colors ${
+        active === id ? colorMap[id] + " font-bold" : "text-[#225424] font-light"
+      }`}
+    >
+      {id === "work" ? "Services/Work" : id.charAt(0).toUpperCase() + id.slice(1)}
+    </Link>
+  ))}
 
-        <a
-          href="/pdf/resume.pdf"
-          download
-          className="hover:underline text-[#225424]"
-        >
-          Resume
-        </a>
-      </nav>
+  <a
+    href="/pdf/resume.pdf"
+    download
+    className="font-bold text-[#225424] hover:underline animate-pulse"
+  >
+    Resume
+  </a>
+</nav>
+
 
       {/* Mobile Menu Toggle */}
       <button
-        className={`md:hidden z-50 transition-colors ${
+        className={`md:hidden z-50 transition-colors  ${
           colorMap[active] || "text-[#225424]"
         }`}
         onClick={() => setMenuOpen(!menuOpen)}
@@ -92,35 +93,38 @@ export default function Nav() {
         {menuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <div
-          className="absolute top-16 right-4 w-[85%] bg-white/10 backdrop-blur-md border border-white/20
-          text-[#225424] rounded-xl shadow-xl py-4 px-6 flex flex-col gap-4 md:hidden"
-        >
-          {sections.map((id) => (
-            <Link
-              key={id}
-              href={`#${id}`}
-              onClick={() => setMenuOpen(false)}
-              className={`transition-colors ${
-                active === id ? colorMap[id] : "text-[#225424]"
-              }`}
-            >
-              {id === "work" ? "Services/Work" : id.charAt(0).toUpperCase() + id.slice(1)}
-            </Link>
-          ))}
+     {/* Mobile Dropdown Menu */}
+{menuOpen && (
+  <div
+    className={`absolute top-16 right-4 w-[35%] rounded-xl shadow-xl py-4 px-6 flex flex-col gap-4 md:hidden
+      ${menuOpen ? "bg-white text-black" : "bg-white/10 text-[#225424]"} transition-colors duration-300`}
+  >
+    {sections.map((id) => (
+      <Link
+        key={id}
+        href={`#${id}`}
+        onClick={() => setMenuOpen(false)}
+        className={`transition-colors ${
+          active === id
+            ? `${colorMap[id]} font-bold`
+            : "text-[#225424] font-light"
+        }`}
+      >
+        {id === "work" ? "Services/Work" : id.charAt(0).toUpperCase() + id.slice(1)}
+      </Link>
+    ))}
 
-          <a
-            href="/pdf/resume.pdf"
-            download
-            className="hover:underline"
-            onClick={() => setMenuOpen(false)}
-          >
-            Resume
-          </a>
-        </div>
-      )}
+    <a
+      href="/pdf/resume.pdf"
+      download
+      onClick={() => setMenuOpen(false)}
+      className="font-bold text-[#225424] hover:underline animate-pulse"
+    >
+      Resume
+    </a>
+  </div>
+)}
+
     </header>
   );
 }

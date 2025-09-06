@@ -7,54 +7,57 @@ import Image from "next/image";
 
 const projects = [
   {
-    title: "Project One",
-    description:"The soft hum of the city blended with the tapping of keys as Alex worked late into the night. The glow from the screen cast long shadows on the walls, reflecting lines of code and ambition. Outside, the rain painted the pavement in silver streaks, while inside, ideas took shape—some fragile, some fierce. Every error message was a puzzle, every breakthrough a quiet victory. In that small, cluttered room, time blurred, and creation felt infinite. It wasn’t just another project—it was a step closer to something real.",
+    title: "Cartoonizer",
+    description:
+      "Cartoonizer is a Python-based web application that transforms images, GIFs, and short videos (up to 60 seconds or 100 MB) into cartoon-style visuals. It’s designed to work efficiently even on systems without GPU support, though GPU acceleration is optional for faster processing",
     bg: "/images/Glomatic-28.jpeg",
     before: "/images/before.jpeg",
     after: "/images/after.jpg",
-    github: "https://github.com/your/project1",
-    live: "https://yourproject1.com",
+    github: "https://github.com/sangeethsanthosh-git/Cartoonizer",
+    status: "completed",
   },
   {
-    title: "Project Two",
-    description: "This is a description for the second project.",
+    title: "VidScoop",
+    description: ( <>
+      Vidscoop is a simple yet powerful Flask web application built with Python that allows users to download YouTube videos and audio in multiple formats. With a clean UI and fast backend, the app makes it easy to fetch content in different resolutions and file types.
+       <br />
+      <span className="mt-3 block p-2 text-sm font-semibold bg-yellow-100 text-yellow-800 rounded-md">
+        ⚠️ CAUTION: This project is for educational purposes only. Downloading copyrighted 
+        content without permission may violate YouTube&apos;s terms of service.
+      </span>
+    </>),
     bg: "/images/glomatic-30.jpeg",
     image: "/images/youtube.gif",
     github: "https://github.com/your/project2",
-    live: "https://yourproject2.com",
+    status: "completed",
   },
-   {
-    title: "Project Two",
-    description: "This is a description for the second project.",
+  {
+    title: "AeroSence",
+    description:
+      "Aerosence is a Python-based web application built using Django that predicts weather conditions, air quality index(AQI) and provides real-time weather updates via the OpenWeather API.",
     bg: "/images/glomatic_21.jpg",
-    image: "/images/static-photo.jpg",
+    image: "/images/aerosence.gif",
     github: "https://github.com/your/project2",
-    live: "https://yourproject2.com",
+    status: "completed",
   },
-   {
-    title: "Project Two",
-    description: "This is a description for the second project.",
+  {
+    title: "EchoNotes",
+    description: "EchoNotes is a Flask/Django-based web application that converts speech into text notes. Users can either record live audio through their browser microphone or upload audio files (MP3/WAV), and EchoNotes will instantly transcribe them into clean, readable notes.",
     bg: "/images/glomatic_08.jpg",
-    image: "/images/static-photo.jpg",
-    github: "https://github.com/your/project2",
-    live: "https://yourproject2.com",
+    image: "/images/echonotes.gif",
+     //github: "https://github.com/your/project2",
+    //live: "https://yourproject2.com",
+    status: "working",
   },
-   {
-    title: "Project Two",
-    description: "This is a description for the second project.",
+  {
+    title: "Portfolio",
+    description: "This project is a personal portfolio website built to showcase my skills, projects, services, and experience as a web developer and designer. The website is modern, responsive, and interactive, designed to provide a smooth user experience while highlighting my work and capabilities.",
     bg: "/images/glomatic_27.jpg",
-    image: "/images/static-photo.jpg",
-    github: "https://github.com/your/project2",
-    live: "https://yourproject2.com",
+    image: "/images/portfolio.gif",
+    live: "https://sangeethsanthoshsa.vercel.app",
+    status: "completed",
   },
-   {
-    title: "Project Two",
-    description: "This is a description for the second project.",
-    bg: "/images/glomatic_01.jpg",
-    image: "/images/static-photo.jpg",
-    github: "https://github.com/your/project2",
-    live: "https://yourproject2.com",
-  },
+  
 ];
 
 export default function Projects() {
@@ -71,24 +74,26 @@ export default function Projects() {
     setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
-  const isTouchDevice = typeof window !== "undefined" && "ontouchstart" in window;
+  const isTouchDevice =
+    typeof window !== "undefined" && "ontouchstart" in window;
 
-const handleTouchStart = (e: React.TouchEvent) => {
-  if (!isTouchDevice) return;
-  touchStartX.current = e.touches[0].clientX;
-};
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isTouchDevice) return;
+    touchStartX.current = e.touches[0].clientX;
+  };
 
-const handleTouchMove = (e: React.TouchEvent) => {
-  if (!isTouchDevice) return;
-  touchEndX.current = e.touches[0].clientX;
-};
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isTouchDevice) return;
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-const handleTouchEnd = () => {
-  if (!isTouchDevice) return;
-  const distance = touchStartX.current - touchEndX.current;
-  if (distance > 50) next(); // Swipe left
-  if (distance < -50) prev(); // Swipe right
-};
+  const handleTouchEnd = () => {
+    if (!isTouchDevice) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 50) next(); // Swipe left
+    if (distance < -50) prev(); // Swipe right
+  };
+
   return (
     <section
       id="project"
@@ -115,38 +120,59 @@ const handleTouchEnd = () => {
             transition={{ duration: 0.5 }}
             className="max-w-xl order-2 lg:order-1 mt-10 lg:mt-0"
           >
+            {/* Status Badge */}
+            {activeProject.status === "working" && (
+              <span className="inline-block text-xs font-semibold tracking-wide text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full mb-2">
+                🚧 Currently Working On
+              </span>
+            )}
+
             <h2 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight">
               {activeProject.title}
             </h2>
-            <p className="text-lg text-white/80 mb-8">{activeProject.description}</p>
+            <p className="text-lg text-white/80 mb-8">
+              {activeProject.description}
+            </p>
 
             <div className="flex gap-4 mb-8">
-              <a
-                href={activeProject.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="backdrop-blur-md bg-white/10 border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/20 transition"
-              >
-                View Live
-              </a>
-              <a
+              {activeProject.live && (
+                <a
+                  href={activeProject.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="backdrop-blur-md bg-white/10 border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/20 transition"
+                >
+                  View Live
+                </a>
+              )}
+              {activeProject.github && (
+                <a
                 href={activeProject.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="backdrop-blur-md bg-white/10 border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/20 transition"
               >
                 GitHub Repo
-              </a>
+              </a>)}
+              
             </div>
 
             {/* Dot Indicators */}
             <div className="flex gap-2 mt-4">
-              {projects.map((_, index) => (
+              {projects.map((proj, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrent(index)}
-                  className={`w-3 h-3 rounded-full border border-white ${
-                    index === current ? "bg-white" : "bg-transparent"
+                  className={`w-3 h-3 rounded-full border ${
+                    proj.status === "working"
+                      ? "border-orange-400"
+                      : "border-white"
+                  } ${
+                    index === current
+                      ? proj.status === "working"
+                        ? "bg-orange-400"
+                        : "bg-white"
+                      : "bg-transparent"
                   }`}
                 />
               ))}
@@ -200,13 +226,21 @@ const handleTouchEnd = () => {
         </div>
 
         {/* Swipe hint for mobile */}
-        <p className="text-sm text-white/80 font-mono sm:hidden">Swipe to navigate</p>
+        <p className="text-sm text-white/80 font-mono sm:hidden">
+          Swipe to navigate
+        </p>
       </motion.div>
     </section>
   );
 }
 
-function BeforeAfterSlider({ before, after }: { before: string; after: string }) {
+function BeforeAfterSlider({
+  before,
+  after,
+}: {
+  before: string;
+  after: string;
+}) {
   const [position, setPosition] = useState(50);
 
   const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
@@ -233,12 +267,7 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
         className="absolute top-0 left-0 h-full overflow-hidden"
         style={{ width: `${position}%`, zIndex: 2 }}
       >
-        <Image
-          src={after}
-          alt="After"
-          fill
-          className="object-cover rounded-xl"
-        />
+        <Image src={after} alt="After" fill className="object-cover rounded-xl" />
       </div>
       <div
         className="absolute top-0 bottom-0 w-[2px] bg-white"
