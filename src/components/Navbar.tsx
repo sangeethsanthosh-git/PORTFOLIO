@@ -73,7 +73,7 @@ export default function Nav() {
   ))}
 
   <a
-    href="/pdf/resume.pdf"
+    href="/pdf/Sangeeth_Santhosh_Resume.pdf"
     download
     className="font-bold text-[#225424] hover:underline animate-pulse"
   >
@@ -115,7 +115,7 @@ export default function Nav() {
     ))}
 
     <a
-      href="/pdf/resume.pdf"
+      href="/pdf/Sangeeth_Santhosh_Resume.pdf"
       download
       onClick={() => setMenuOpen(false)}
       className="font-bold text-[#225424] hover:underline animate-pulse"
