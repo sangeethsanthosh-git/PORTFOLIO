@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export default function HeroSection() {
-  const lines = ["Hi I'M", "SANGEETH SANTHOSH", "WEB DEVELOPER"];
+  const lines = useMemo(() => ["Hi I'M", "SANGEETH SANTHOSH", "WEB DEVELOPER"], []);
   const [currentLine, setCurrentLine] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
@@ -36,12 +36,12 @@ export default function HeroSection() {
   }, [charIndex, currentLine, lines]);
 
   return (
-    <section className="relative h-[100svh] w-full bg-neutral-50 flex flex-col items-center justify-center text-green-900 px-6">
+    <section className="relative h-[100svh] w-full bg-[#faecd2] flex flex-col items-center justify-center text-green-900 px-6">
       <div className="text-center leading-snug">
         {/* Background Portfolio Text */}
-<span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[17vw] md:text-[17vw] lg:text-[16rem] font-bold text-green-900 opacity-5 select-none pointer-events-none">
-  PORTFOLIO
-</span>
+        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[17vw] md:text-[17vw] lg:text-[16rem] font-bold text-green-900 opacity-5 select-none pointer-events-none">
+          PORTFOLIO
+        </span>
 
         {/* Line 1 */}
         <h1 className="text-lg font-poppins font-light tracking-widest">

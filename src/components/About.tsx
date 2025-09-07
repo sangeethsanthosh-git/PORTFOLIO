@@ -33,7 +33,7 @@ export default function About() {
 
         {/* CTA */}
         <a href="#project">
-          <button className="mt-8 bg-white text-[#225424] px-6 py-2 rounded-full text-sm hover:bg-[#225424] hover:text-white border border-white transition">
+          <button className="mt-8 bg-[#faecd2] text-[#225424] px-6 py-2 rounded-full text-sm hover:bg-[#225424] hover:text-white border border-white transition">
             See My Work
           </button>
         </a>
