@@ -35,6 +35,15 @@ const projects: Project[] = [
     status: "completed",
   },
   {
+    title: "Gistify",
+    description:"Transform long documents into clear, actionable insights.Gistify is an elegant, fast, AI-powered document intelligence tool that converts PDFs and raw text into summaries, extracted entities, and action plans all using a smooth, conversational interface. Built for developers, students, researchers, and teams who deal with overwhelming documents every day.",
+    bgDesktop: "/images/gistify.gif",
+    bgMobile: "/images/gistify-mb.gif",
+    image: "/images/gistify.gif",
+    live: "https://gistify-c.vercel.app/",
+    status: "completed",
+  },
+  {
     title: "VidScoop",
     description: (
       <>
