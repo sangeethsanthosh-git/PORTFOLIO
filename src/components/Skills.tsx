@@ -1,79 +1,53 @@
-// components/Skills.tsx
-import Image from "next/image";
+"use client";
 
-const skillRows = [
-  {
-    category: "Frontend & Tools",
-    items: [
-      { name: "HTML", icon: "/skills/html.png" },
-      { name: "CSS", icon: "/skills/css.png" },
-      { name: "JavaScript", icon: "/skills/javascript.png" },
-      { name: "React.js", icon: "/skills/react.png" },
-      { name: "Next.js", icon: "/skills/nextjs.png" },
-      { name: "VS Code", icon: "/skills/vscode.png" },
-      { name: "Git", icon: "/skills/git.png" },
-      { name: "Figma", icon: "/skills/figma.png" },
-      { name: "Canva", icon: "/skills/canva.png" },
-      
-    ],
-  },
-  {
-    category: "Backend",
-    items: [
-      { name: "Python", icon: "/skills/python.png" },
-      { name: "Django", icon: "/skills/django.png" },
-      { name: "Node.js", icon: "/skills/nodejs.png" },
-      { name: "MySQL", icon: "/skills/mysql.png" },
-      { name: "Postman", icon: "/skills/postman.png" },
-      { name: "PostgreSQL", icon: "/skills/postgresql.png" },
-      { name: "TypeScript", icon: "/skills/typescript.png" },
-      { name: "Tailwind CSS", icon: "/skills/tailwind.png" },
-      { name: "Framer Motion", icon: "/skills/framer.png" },
-    ],
-  },
-  
-];
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { skills } from "@/data/portfolio";
 
 export default function Skills() {
   return (
-    <section className="bg-[black] text-white py-8 opacity-90" id="skills">
-      
-{/* Section Label */}
+    <section id="skills" className="bg-black py-24 text-white">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-10">
+          <p className="text-sm uppercase tracking-[0.35em] text-[#faecd2]/80">Skills</p>
+          <h2 className="mt-4 text-3xl font-semibold text-[#f9f5ed]">Tools I Use to Build</h2>
+        </div>
 
-      <div className="space-y-5 transform -translate-y-[-1.5rem]">
-        {skillRows.map((row, index) => (
-          <div key={row.category} className="relative overflow-hidden group h-20">
-            {/* Optional fade edges */}
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[black] to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[black] to-transparent z-10" />
-
-            <div
-              className={`flex w-max gap-6 absolute top-0 ${
-                index % 1 === 0 ? "animate-marquee" : "animate-marquee-reverse"
-              }`}
+        <div className="grid gap-6 md:grid-cols-2">
+          {skills.map((group, index) => (
+            <motion.div
+              key={group.category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="rounded-3xl border border-white/10 bg-white/5 p-6"
             >
-              {[...row.items, ...row.items, ...row.items].map((skill, i) => (
-                <div
-                  key={`${skill.name}-${i}`}
-                  className="flex items-center gap-2 bg-[#f9f5ed] text-[#2a2a2a] rounded-full px-4 py-2 shadow-md min-w-fit"
-                >
-                 <Image
-  src={skill.icon}
-  alt={skill.name}
-  width={32}
-  height={32}
-  className="w-8 h-8 rounded-full object-contain"
-/>
+              <h3 className="text-xl font-medium text-[#f9f5ed]">{group.category}</h3>
 
-                  <span className="text-sm font-medium">{skill.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+              <div className="mt-6 flex flex-wrap gap-3">
+                {group.items.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="flex items-center gap-3 rounded-full bg-[#f9f5ed] px-4 py-3 text-sm font-medium text-[#2a2a2a] transition-transform duration-200 hover:scale-[1.02]"
+                  >
+                    <Image
+                      src={skill.icon}
+                      alt={skill.name}
+                      width={32}
+                      height={32}
+                      loading="lazy"
+                      sizes="32px"
+                      className="h-8 w-8 rounded-full object-contain"
+                    />
+                    <span>{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-
-                  

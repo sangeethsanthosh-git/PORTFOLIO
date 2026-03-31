@@ -1,13 +1,15 @@
-import React from "react";
+import { experience } from "@/data/portfolio";
 
 export default function Experience() {
   return (
-    <section className="py-40 px-20 md:px-20  bg-[#faecd2] flex items-center justify-center">
-      <h1 className="text-6xl md:text-7xl font-bold text-[#225424] tracking-widest">
-        Freelancer
-      </h1>
-      <p className="text-lg md:text-xl text-[#225424] mt-4 opacity-60">
-        Half poet, half developer fully winging it..</p>
+    <section id="experience" className="bg-[#faecd2] py-24 text-[#225424]">
+      <div className="mx-auto flex max-w-5xl flex-col items-center px-6 text-center">
+        <p className="text-sm uppercase tracking-[0.35em] text-[#225424]/70">Experience</p>
+        <h2 className="mt-4 text-5xl font-semibold tracking-[0.08em]">{experience.title}</h2>
+        <p className="mt-6 max-w-2xl text-base leading-7 text-[#225424]/70">
+          {experience.summary}
+        </p>
+      </div>
     </section>
   );
 }

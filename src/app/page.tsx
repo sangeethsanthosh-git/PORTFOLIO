@@ -1,42 +1,55 @@
-"use client";
-import { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-//import Menu from "@/components/Menu";
+import dynamic from "next/dynamic";
 import About from "@/components/About";
 import Education from "@/components/Education";
-import Skills from "@/components/Skills";
-//import UpcomingProjects from "@/components/UpcomingProjects";
-import Work from "@/components/Work";
-import Footer from "@/components/Footer";
-import Project from "@/components/Project";
-import Service from "@/components/Services";
 import Experience from "@/components/Experience";
-import HeroSection from "@/components/HeroSection"; // Assuming you already have this
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import Navbar from "@/components/Navbar";
+import Services from "@/components/Services";
+
+const Skills = dynamic(() => import("@/components/Skills"), {
+  loading: () => <SectionFallback id="skills" className="bg-black text-white" label="Loading skills…" />,
+});
+
+const Project = dynamic(() => import("@/components/Project"), {
+  loading: () => (
+    <SectionFallback id="project" className="bg-black text-white" label="Loading projects…" />
+  ),
+});
+
+const Work = dynamic(() => import("@/components/Work"), {
+  loading: () => <SectionFallback id="work" className="bg-[#2a2a2a] text-white" label="Loading work…" />,
+});
+
+function SectionFallback({
+  className,
+  id,
+  label,
+}: {
+  className: string;
+  id: string;
+  label: string;
+}) {
+  return (
+    <section id={id} className={`py-24 ${className}`}>
+      <div className="mx-auto max-w-5xl px-6 text-sm text-white/70">{label}</div>
+    </section>
+  );
+}
 
 export default function Home() {
-  useEffect(() => {
-    // Scroll to top when page loads or refreshes
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <>
-    <Navbar />
+      <Navbar />
       <HeroSection />
       <About />
       <Education />
       <Skills />
       <Project />
-      <Work />
-      {/* <UpcomingProjects /> */}
-      {/* <Service /> */}
-      <Service />
-      {/* <Menu /> */}
-      {/* Uncomment if you have a Menu component */}
+      <Services />
       <Experience />
-      {/* Uncomment if you have an Experience component */}
-      
-      {/* Footer should be the last component */}
+      <Work />
       <Footer />
-    </> // add other sections
+    </>
   );
 }

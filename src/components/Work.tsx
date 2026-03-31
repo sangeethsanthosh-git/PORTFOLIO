@@ -1,103 +1,87 @@
-// app/components/Work.tsx
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const works = [
-  {
-    title: "Client Website Builds",
-    subtitle: "Tailored • Business •  Website",
-    info: "Custom websites for various clients",
-    bg: "/images/service2.png",
-    textColor: "text-white",
-    overlay: "bg-black/20",
-  },
-  {
-    title: "Portfolio site building",
-    subtitle: "DESIGN • DEVELOP • DEPLOY",
-    info: "Personal portfolio showcasing skills",
-    bg: "/images/service1.png",
-    textColor: "text-white",
-    overlay: "bg-black/20",
-  },
-  {
-    title: "E-commerce Website",
-    subtitle: "Shopify • WooCommerce • Custom",
-    info: "Built an e-commerce platform for a local business",
-    bg: "/images/service3.png",
-    textColor: "text-white",
-    overlay: "bg-black/40",
-  },
-  {
-    title: "Teaching Assistance",
-    subtitle: "One-on-One Concept Clarification",
-    info: "Explained projects, logic, and implementation",
-    bg: "/images/service4.png",
-    textColor: "text-white",
-    overlay: "bg-black/30",
-  },
-];
+import { motion } from "framer-motion";
+import { work } from "@/data/portfolio";
 
 export default function Work() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -300 : 300,
-        behavior: "smooth",
-      });
+    if (!scrollRef.current) {
+      return;
     }
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -340 : 340,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <section id="work" className="work-section w-full py-16 bg-[#2a2a2a] relative">
-      <div className="max-w-6xl mx-auto px-4 ">
-        {/* Overlay */}
-  <div className="absolute inset-0 bg-black/40 z-0" />
+    <section id="work" className="relative bg-[#2a2a2a] py-24 text-white">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.35em] text-[#faecd2]/80">Work</p>
+            <h2 className="mt-4 text-3xl font-semibold text-[#f9f5ed]">Recent Work Themes</h2>
+          </div>
 
-        {/* Slide Arrows (desktop only) */}
-        <button
-          onClick={() => scroll("left")}
-          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black p-2 rounded-full shadow"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black p-2 rounded-full shadow"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => scroll("left")}
+              aria-label="Scroll work cards left"
+              className="rounded-full bg-white p-3 text-black transition-transform duration-200 hover:scale-[1.02]"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scroll("right")}
+              aria-label="Scroll work cards right"
+              className="rounded-full bg-white p-3 text-black transition-transform duration-200 hover:scale-[1.02]"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
 
-        <div ref={scrollRef} className="overflow-x-auto scroll-smooth scrollbar-hide">
-          <div className="flex gap-6 snap-x snap-mandatory">
-            {works.map((work, index) => (
-              <div
-                key={index}
-                className="min-w-[80vw] md:min-w-[400px] h-[500px] snap-start shrink-0 rounded-3xl relative overflow-hidden shadow-lg"
+        <div ref={scrollRef} className="scrollbar-hide overflow-x-auto scroll-smooth">
+          <div className="flex gap-6 pb-2">
+            {work.map((item, index) => (
+              <motion.article
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="relative min-h-[440px] min-w-[80vw] snap-start overflow-hidden rounded-[2rem] border border-white/10 shadow-lg md:min-w-[380px] lg:min-w-[420px]"
               >
-                {/* Background */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${work.bg})` }}
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
                 />
-                {/* Overlay */}
-                <div className={`absolute inset-0 ${work.overlay}`} />
-                {/* Content */}
-                <div className="relative z-10 h-full flex flex-col justify-between p-6">
-                  <div className={`${work.textColor} text-xs tracking-widest uppercase`}>
-                    {work.subtitle}
-                  </div>
+                <div
+                  className="absolute inset-0"
+                  style={{ backgroundColor: `rgba(0, 0, 0, ${item.overlayOpacity})` }}
+                />
+
+                <div className="relative z-10 flex h-full flex-col justify-between p-6">
+                  <p className="text-xs uppercase tracking-[0.35em] text-white/80">{item.subtitle}</p>
+
                   <div>
-                    <h3 className={`text-4xl font-light ${work.textColor}`}>{work.title}</h3>
-                    <p className={`mt-1 text-sm tracking-wide ${work.textColor}`}>
-                      {work.info}
-                    </p>
+                    <h3 className="text-3xl font-medium text-white">{item.title}</h3>
+                    <p className="mt-3 max-w-xs text-sm leading-6 text-white/75">{item.info}</p>
                   </div>
                 </div>
-              </div>
+              </motion.article>
             ))}
           </div>
         </div>

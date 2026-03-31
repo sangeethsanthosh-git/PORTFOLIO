@@ -1,82 +1,47 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
+
+import { motion } from "framer-motion";
+import { hero } from "@/data/portfolio";
 
 export default function HeroSection() {
-  const lines = useMemo(() => ["Hi I'M", "SANGEETH SANTHOSH", "WEB DEVELOPER"], []);
-  const [currentLine, setCurrentLine] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
-
-  useEffect(() => {
-    if (currentLine < lines.length) {
-      if (charIndex < lines[currentLine].length) {
-        // Type characters one by one
-        const timeout = setTimeout(() => {
-          setDisplayedText((prev) => prev + lines[currentLine][charIndex]);
-          setCharIndex((prev) => prev + 1);
-        }, 100);
-        return () => clearTimeout(timeout);
-      } else {
-        // Delay before moving to next line
-        const timeout = setTimeout(() => {
-          if (currentLine < lines.length - 1) {
-            setCurrentLine((prev) => prev + 1);
-            setDisplayedText("");
-            setCharIndex(0);
-          } else {
-            // Restart loop when last line is done
-            setCurrentLine(0);
-            setDisplayedText("");
-            setCharIndex(0);
-          }
-        }, 1200);
-        return () => clearTimeout(timeout);
-      }
-    }
-  }, [charIndex, currentLine, lines]);
-
   return (
-    <section className="relative h-[100svh] w-full bg-[#faecd2] flex flex-col items-center justify-center text-green-900 px-6">
-      <div className="text-center leading-snug">
-        {/* Background Portfolio Text */}
-        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[17vw] md:text-[17vw] lg:text-[16rem] font-bold text-green-900 opacity-5 select-none pointer-events-none">
-          PORTFOLIO
-        </span>
+    <section
+      id="top"
+      className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#faecd2] px-6 text-[#225424]"
+    >
+      <span className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none text-[18vw] font-semibold text-[#225424] opacity-5 md:text-[16vw] lg:text-[15rem]">
+        {hero.backgroundWord}
+      </span>
 
-        {/* Line 1 */}
-        <h1 className="text-lg font-poppins font-light tracking-widest">
-          {currentLine === 0 ? displayedText : lines[0]}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="relative z-10 text-center"
+      >
+        <p className="text-sm uppercase tracking-[0.45em] text-[#225424]/80">{hero.eyebrow}</p>
+        <h1 className="mt-6 text-5xl font-semibold tracking-[0.08em] md:text-6xl lg:text-7xl">
+          {hero.title}
         </h1>
+        <p className="mt-4 text-sm uppercase tracking-[0.4em] text-[#225424]/80 md:text-base">
+          {hero.subtitle}
+        </p>
+      </motion.div>
 
-        {/* Line 2 */}
-        <h2 className="text-4xl md:text-6xl font-bold font-nanum mt-4 tracking-wide">
-          {currentLine === 1 ? displayedText : currentLine > 1 ? lines[1] : ""}
-        </h2>
-
-        {/* Line 3 */}
-        <h3 className="text-lg md:text-xl font-poppins mt-4 tracking-widest">
-          {currentLine === 2 ? displayedText : currentLine > 2 ? lines[2] : ""}
-        </h3>
+      <div className="absolute bottom-12 left-6 z-10 md:left-12">
+        <p className="text-2xl font-semibold text-[#225424]/80 md:text-[2.5rem]">{hero.sideLabel}</p>
       </div>
 
-      {/* Bottom-left introduction */}
-      <div className="absolute bottom-12 left-6 md:left-12 z-10">
-        <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#225424] opacity-80 font-poppins">
-          Explore
-        </h2>
+      <div className="absolute bottom-12 right-6 z-10 max-w-sm text-right text-sm text-[#225424]/80 md:right-12 md:text-base">
+        <p>{hero.sideNote}</p>
       </div>
 
-      {/* Bottom-right description */}
-      <div className="absolute bottom-12 right-6 md:right-12 z-10 max-w-sm text-sm md:text-base text-[#225424] text-right font-rubik">
-        <p>DEV</p>
-      </div>
-
-      {/* Scroll Down mouse icon */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <div className="w-6 h-10 border-2 border-[#225424] rounded-full flex items-start justify-center p-1">
-          <div className="w-1 h-2 bg-[#225424] animate-bounce rounded-full" />
+      <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2">
+        <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-[#225424] p-1">
+          <div className="h-2 w-1 rounded-full bg-[#225424]" />
         </div>
-        <span className="text-sm text-[#225424] font-poppins">Scroll Down</span>
+        <span className="text-xs uppercase tracking-[0.3em] text-[#225424]/80">{hero.scrollLabel}</span>
       </div>
     </section>
   );

@@ -1,48 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Caveat, Coiny, Rubik } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
-// Fonts
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-});
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-const coiny = Coiny({
-  variable: "--font-coiny",
-  subsets: ["latin"],
-  weight: "400",
-});
-const rubik = Rubik({
-  variable: "--font-rubik",
-  subsets: ["latin"],
-  weight: ["400", "500"],
 });
 
-// ✅ SEO Metadata
 export const metadata: Metadata = {
   title: "Sangeeth Santhosh | Web Developer & Designer",
   description:
-    "Portfolio of Sangeeth Santhosh — Web Developer skilled in React, Next.js, Tailwind CSS,Pytho,django, and UI/UX design. Explore projects, services, and work experience.",
+    "Portfolio of Sangeeth Santhosh, a web developer building thoughtful digital experiences with React, Next.js, Python, Django, and modern UI systems.",
   keywords: [
     "Sangeeth Santhosh",
     "web developer",
     "Next.js portfolio",
     "React developer",
     "Tailwind CSS",
-    "UI design",
     "Python developer",
     "Django developer",
     "full-stack developer",
-    "web design",
     "frontend developer",
     "freelancer",
   ],
@@ -50,12 +27,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sangeeth Santhosh | Developer & Designer",
     description:
-      "Explore my portfolio showcasing web development,python,django, UI/UX design, and projects built with React, Next.js, and Tailwind CSS.",
+      "Explore projects, services, and experience from Sangeeth Santhosh across frontend, backend, and UI-focused work.",
     url: "https://sangeeth.dev",
     siteName: "sangeeth.dev",
     images: [
       {
-        url: "/og-image.png", // 👈 create this file in your public/ folder
+        url: "/images/about.jpg",
         width: 1200,
         height: 630,
         alt: "Sangeeth Santhosh Portfolio",
@@ -67,26 +44,21 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sangeeth Santhosh | Web Developer & Designer",
-    description:
-      "Portfolio website of Sangeeth Santhosh showcasing as developer.",
+    description: "Portfolio website of Sangeeth Santhosh showcasing development and design work.",
     creator: "@sangeeth_saa",
-    images: ["/og-image.png"],
+    images: ["/images/about.jpg"],
   },
-  metadataBase: new URL("https://sangeeth.dev"), // 👈 change to your domain
+  metadataBase: new URL("https://sangeeth.dev"),
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${coiny.variable} ${rubik.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${geist.variable} antialiased`}>{children}</body>
     </html>
   );
 }

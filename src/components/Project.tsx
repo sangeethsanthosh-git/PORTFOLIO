@@ -1,287 +1,286 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import type { JSX } from "react";
+import { projects } from "@/data/portfolio";
 
+const fadeTransition = { duration: 0.4 };
 
-// -------------------- Types --------------------
-type Project = {
-  title: string;
-  description: string | JSX.Element;
-  bgDesktop: string;
-  bgMobile: string;
-  before?: string;
-  after?: string;
-  github?: string;
-  live?: string;
-  image?: string;
-  status: "completed" | "working";
-};
-
-// -------------------- Projects Data --------------------
-const projects: Project[] = [
-  {
-    title: "Cartoonizer",
-    description:
-      "Cartoonizer is a Python-based web application that transforms images, GIFs, and short videos (up to 60 seconds or 100 MB) into cartoon-style visuals. It’s designed to work efficiently even on systems without GPU support, though GPU acceleration is optional for faster processing",
-    bgDesktop: "/images/cartoon.gif",
-    bgMobile: "/images/cartoon-mb.gif",
-    before: "/images/before.jpeg",
-    after: "/images/after.jpg",
-    github: "https://github.com/sangeethsanthosh-git/Cartoonizer",
-    status: "completed",
-  },
-  {
-    title: "Gistify",
-    description:"Transform long documents into clear, actionable insights.Gistify is an elegant, fast, AI-powered document intelligence tool that converts PDFs and raw text into summaries, extracted entities, and action plans all using a smooth, conversational interface. Built for developers, students, researchers, and teams who deal with overwhelming documents every day.",
-    bgDesktop: "/images/gistify.gif",
-    bgMobile: "/images/gistify-mb.gif",
-    image: "/images/gistify.gif",
-    live: "https://gistify-c.vercel.app/",
-    status: "completed",
-  },
-  {
-    title: "VidScoop",
-    description: (
-      <>
-        Vidscoop is a simple yet powerful Flask web application built with Python that allows users to download YouTube videos and audio in multiple formats.  
-        <br />
-        <span className="mt-3 block p-2 text-sm font-semibold bg-yellow-100 text-yellow-800 rounded-md">
-          ⚠️ CAUTION: This project is for educational purposes only. Downloading copyrighted 
-          content without permission may violate YouTube&apos;s terms of service.
-        </span>
-      </>
-    ),
-    bgDesktop: "/images/youtube.gif",
-    bgMobile: "/images/youtube-mb.gif",
-    image: "/images/youtube.gif",
-    //github: "https://github.com/your/project2",
-    status: "working",
-  },
-  {
-    title: "AeroSense",
-    description:
-      "Aerosense is a Python-based web application built using Django that predicts weather conditions, air quality index(AQI) and provides real-time weather updates via the OpenWeather API.",
-    bgDesktop: "/images/aerosense.gif",
-    bgMobile: "/images/aerosense-mb.gif",
-    image: "/images/aerosense.gif",
-    github: "https://github.com/sangeethsanthosh-git/AEROSENSE",
-    status: "completed",
-  },
-  {
-    title: "EchoNotes",
-    description:
-      "EchoNotes is a Flask/Django-based web application that converts speech into text notes. Users can either record live audio through their browser microphone or upload audio files (MP3/WAV), and EchoNotes will instantly transcribe them into clean, readable notes.",
-    bgDesktop: "/images/echonotes.gif",
-    bgMobile: "/images/echonotes-mb.gif",
-    image: "/images/echonotes.gif",
-    status: "working",
-  },
-  {
-    title: "Portfolio",
-    description:
-      "This project is a personal portfolio website built to showcase my skills, projects, services, and experience as a web developer and designer. The website is modern, responsive, and interactive, designed to provide a smooth user experience while highlighting my work and capabilities.",
-    bgDesktop: "/images/portfolio.gif",
-    bgMobile: "/images/portfolio-mb.gif",
-    image: "/images/portfolio.gif",
-    live: "https://sangeethsanthoshsa.vercel.app",
-    status: "completed",
-  },
-];
-
-// -------------------- Component --------------------
-export default function Projects() {
+export default function Project() {
   const [current, setCurrent] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef<number | null>(null);
   const activeProject = projects[current];
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  // Detect mobile
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 1024);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const next = () => setCurrent((prev) => (prev + 1) % projects.length);
   const prev = () => setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
 
-  const isTouchDevice = typeof window !== "undefined" && "ontouchstart" in window;
+  const handleTouchStart = (event: React.TouchEvent<HTMLElement>) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!isTouchDevice) return;
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isTouchDevice) return;
-    touchEndX.current = e.touches[0].clientX;
-  };
-  const handleTouchEnd = () => {
-    if (!isTouchDevice) return;
-    const distance = touchStartX.current - touchEndX.current;
-    if (distance > 50) next();
-    if (distance < -50) prev();
+  const handleTouchEnd = (event: React.TouchEvent<HTMLElement>) => {
+    if (touchStartX.current === null) {
+      return;
+    }
+
+    const distance = touchStartX.current - event.changedTouches[0].clientX;
+
+    if (Math.abs(distance) > 50) {
+      if (distance > 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
+
+    touchStartX.current = null;
   };
 
   return (
     <section
       id="project"
-      className="relative min-h-[100svh] lg:h-screen w-full text-white overflow-hidden"
-      style={{
-        backgroundImage: `url(${
-          isMobile
-            ? activeProject.bgMobile || activeProject.bgDesktop
-            : activeProject.bgDesktop
-        })`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="relative overflow-hidden bg-black py-24 text-white"
       onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="absolute inset-0 bg-black/60 z-10" />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`${activeProject.title}-background`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={fadeTransition}
+          className="absolute inset-0"
+        >
+          <Image
+            src={activeProject.backdropDesktop}
+            alt=""
+            aria-hidden="true"
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="hidden object-cover lg:block"
+          />
+          <Image
+            src={activeProject.backdropMobile ?? activeProject.backdropDesktop}
+            alt=""
+            aria-hidden="true"
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="object-cover lg:hidden"
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="relative z-20 flex flex-col lg:flex-row items-center justify-between h-full px-6 lg:px-20 py-16 gap-6">
-        {/* Text Section */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current + "-text"}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-xl order-2 lg:order-1 mt-10 lg:mt-0"
-          >
-            {activeProject.status === "working" && (
-              <span className="inline-block text-xs font-semibold tracking-wide text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full mb-2">
-                🚧 Currently Working On
-              </span>
-            )}
+      <div className="absolute inset-0 bg-black/65" />
 
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              {activeProject.title}
-            </h2>
-            <p className="text-lg text-white/80 mb-8">{activeProject.description}</p>
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.35em] text-[#faecd2]/80">Projects</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white">Selected Build Highlights</h2>
+          </div>
 
-            <div className="flex gap-4 mb-8">
-              {activeProject.live && (
-                <a
-                  href={activeProject.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="backdrop-blur-md bg-white/10 border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/20 transition"
-                >
-                  View Live
-                </a>
-              )}
-              {activeProject.github && (
-                <a
-                  href={activeProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="backdrop-blur-md bg-white/10 border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/20 transition"
-                >
-                  GitHub Repo
-                </a>
-              )}
-            </div>
-
-            {/* Dot Indicators */}
-            <div className="flex gap-2 mt-4">
-              {projects.map((proj, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrent(index)}
-                  className={`w-3 h-3 rounded-full border ${
-                    proj.status === "working" ? "border-orange-400" : "border-white"
-                  } ${index === current ? (proj.status === "working" ? "bg-orange-400" : "bg-white") : "bg-transparent"}`}
-                />
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Media Section */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current + "-media"}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.5 }}
-            className="relative w-full max-w-md mt-10 lg:mt-0 order-1 lg:order-2 rounded-xl overflow-hidden shadow-lg"
-          >
-            {current === 0 && activeProject.before && activeProject.after ? (
-              <BeforeAfterSlider before={activeProject.before} after={activeProject.after} />
-            ) : (
-              <Image
-                src={activeProject.image || "/images/default.jpg"}
-                alt="Project"
-                width={800}
-                height={600}
-                className="w-full h-full object-cover rounded-xl"
-              />
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Nav buttons + swipe hint */}
-      <motion.div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center space-y-2">
-        <div className="hidden sm:flex gap-4">
-          <button
-            onClick={prev}
-            className="p-2 rounded-full border border-white/30 bg-white/10 hover:bg-white/20 transition"
-          >
-            <ArrowLeft className="w-5 h-5 text-white" />
-          </button>
-          <button
-            onClick={next}
-            className="p-2 rounded-full border border-white/30 bg-white/10 hover:bg-white/20 transition"
-          >
-            <ArrowRight className="w-5 h-5 text-white" />
-          </button>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Show previous project"
+              className="rounded-full border border-white/20 bg-white/10 p-3 transition-transform duration-200 hover:scale-[1.02]"
+            >
+              <ArrowLeft className="h-5 w-5 text-white" />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Show next project"
+              className="rounded-full border border-white/20 bg-white/10 p-3 transition-transform duration-200 hover:scale-[1.02]"
+            >
+              <ArrowRight className="h-5 w-5 text-white" />
+            </button>
+          </div>
         </div>
-        <p className="text-sm text-white/80 font-mono sm:hidden">Swipe to navigate</p>
-      </motion.div>
+
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${activeProject.title}-copy`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={fadeTransition}
+              >
+                {activeProject.status === "working" ? (
+                  <span className="inline-flex rounded-full bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-300">
+                    Currently Working On
+                  </span>
+                ) : null}
+
+                <h3 className="mt-4 text-4xl font-semibold leading-tight md:text-5xl">
+                  {activeProject.title}
+                </h3>
+                <p className="mt-4 max-w-xl text-base leading-7 text-white/75">
+                  {activeProject.description}
+                </p>
+
+                {activeProject.notice ? (
+                  <p className="mt-4 rounded-2xl bg-yellow-100/95 px-4 py-3 text-sm font-medium text-yellow-900">
+                    {activeProject.notice}
+                  </p>
+                ) : null}
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  {activeProject.live ? (
+                    <a
+                      href={activeProject.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-transform duration-200 hover:scale-[1.02]"
+                    >
+                      View Live
+                    </a>
+                  ) : null}
+
+                  {activeProject.github ? (
+                    <a
+                      href={activeProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-transform duration-200 hover:scale-[1.02]"
+                    >
+                      GitHub Repo
+                    </a>
+                  ) : null}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="mt-8 flex flex-wrap gap-2">
+              {projects.map((project, index) => {
+                const isActive = index === current;
+                const isWorking = project.status === "working";
+
+                return (
+                  <button
+                    key={project.title}
+                    type="button"
+                    aria-label={`Show ${project.title}`}
+                    onClick={() => setCurrent(index)}
+                    className={`h-3 w-3 rounded-full border transition-transform duration-200 hover:scale-110 ${
+                      isWorking ? "border-orange-300" : "border-white"
+                    } ${isActive ? (isWorking ? "bg-orange-300" : "bg-white") : "bg-transparent"}`}
+                  />
+                );
+              })}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.05 }}
+            className="mx-auto w-full max-w-md"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${activeProject.title}-media`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={fadeTransition}
+                className="overflow-hidden rounded-3xl border border-white/10 bg-white/10 shadow-2xl"
+              >
+                {activeProject.before && activeProject.after ? (
+                  <BeforeAfterSlider before={activeProject.before} after={activeProject.after} />
+                ) : (
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={activeProject.preview}
+                      alt={`${activeProject.title} preview`}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+
+            <p className="mt-4 text-sm text-white/60">
+              Swipe on mobile or use the controls to browse projects.
+            </p>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
 
-// -------------------- BeforeAfterSlider --------------------
-function BeforeAfterSlider({ before, after }: { before: string; after: string }) {
+function BeforeAfterSlider({ after, before }: { after: string; before: string }) {
   const [position, setPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
-    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    const newPos = ((clientX - rect.left) / rect.width) * 100;
-    setPosition(Math.max(0, Math.min(100, newPos)));
+  const updatePosition = (clientX: number, element: HTMLElement) => {
+    const rect = element.getBoundingClientRect();
+    const nextPosition = ((clientX - rect.left) / rect.width) * 100;
+    setPosition(Math.max(0, Math.min(100, nextPosition)));
   };
 
   return (
     <div
-      onMouseMove={handleMove}
-      onTouchMove={handleMove}
-      className="relative w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden select-none"
+      className="relative aspect-[4/3] cursor-col-resize overflow-hidden select-none"
+      style={{ touchAction: "none" }}
+      onPointerDown={(event) => {
+        setIsDragging(true);
+        updatePosition(event.clientX, event.currentTarget);
+      }}
+      onPointerMove={(event) => {
+        if (isDragging) {
+          updatePosition(event.clientX, event.currentTarget);
+        }
+      }}
+      onPointerUp={() => setIsDragging(false)}
+      onPointerLeave={() => setIsDragging(false)}
     >
-      <Image src={before} alt="Before" fill className="object-cover rounded-xl" />
-      <div
-        className="absolute top-0 left-0 h-full overflow-hidden"
-        style={{ width: `${position}%` }}
-      >
-        <Image src={after} alt="After" fill className="object-cover rounded-xl" />
-      </div>
-      <div
-        className="absolute top-0 bottom-0 w-[2px] bg-white"
-        style={{ left: `${position}%` }}
+      <Image
+        src={before}
+        alt="Original preview"
+        fill
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover"
       />
+
+      <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${position}%` }}>
+        <Image
+          src={after}
+          alt="Processed preview"
+          fill
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover"
+        />
+      </div>
+
+      <div className="absolute inset-y-0 w-[2px] bg-white" style={{ left: `${position}%` }} />
+
+      <div className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white">
+        Before
+      </div>
+      <div className="absolute right-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white">
+        After
+      </div>
     </div>
   );
 }

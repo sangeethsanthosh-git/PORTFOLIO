@@ -1,22 +1,29 @@
-export default function Education() {
-  const education = [
-    ["2025 – Pursuing", "Master of Computer Applications", "APJ Abdul Kalam Technological University"],
-    ["2022 – 2025", "Bachelor of Science in Computer Science", "Kerala University"],
-    ["2021 – 2022", "High School", "Central Board of Secondary Education"],
-  ];
+import { education } from "@/data/portfolio";
 
+export default function Education() {
   return (
-    <section className="bg-[#2a2a2a] text-white py-20 px-6 opacity-80">
-      <div className="max-w-3xl mx-auto space-y-6">
-        {education.map(([year, degree, place], idx) => (
-          <div key={idx} className="flex justify-between items-center border-b border-gray-700 pb-3">
-            <span className="text-[#f9f5ed] font-mono text-sm">{year}</span>
-            <div className="text-right">
-              <p className=" text-[#f9f5ed] font-medium ">{degree}</p>
-              <p className="text-sm text-gray-400">{place}</p>
+    <section id="education" className="bg-[#2a2a2a] py-24 text-white">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-10">
+          <p className="text-sm uppercase tracking-[0.35em] text-[#faecd2]/80">Education</p>
+          <h2 className="mt-4 text-3xl font-semibold text-[#f9f5ed]">Academic Journey</h2>
+        </div>
+
+        <div className="space-y-6">
+          {education.map((item) => (
+            <div
+              key={`${item.year}-${item.degree}`}
+              className="flex flex-col gap-3 border-b border-white/10 pb-5 md:flex-row md:items-center md:justify-between"
+            >
+              <span className="text-sm uppercase tracking-[0.2em] text-[#faecd2]/80">{item.year}</span>
+
+              <div className="text-left md:text-right">
+                <p className="text-lg font-medium text-[#f9f5ed]">{item.degree}</p>
+                <p className="mt-1 text-sm text-white/60">{item.place}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
