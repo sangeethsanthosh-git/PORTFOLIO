@@ -75,13 +75,13 @@ export default function Navbar() {
           </Link>
         ))}
 
-        <a
+        <Link
           href="/pdf/Sangeeth_Santhosh_Resume.pdf"
           download
           className="rounded-full border border-[#225424]/20 px-4 py-2 font-medium text-[#225424] transition-transform duration-200 hover:scale-[1.02] xl:px-5"
         >
           Resume
-        </a>
+        </Link>
       </nav>
 
       <button
@@ -119,14 +119,14 @@ export default function Navbar() {
               ))}
             </div>
 
-            <a
+            <Link
               href="/pdf/Sangeeth_Santhosh_Resume.pdf"
               download
               onClick={() => setMenuOpen(false)}
               className="mt-4 block rounded-full border border-[#225424]/20 px-4 py-3 text-center font-medium transition-transform duration-200 hover:scale-[1.02]"
             >
               Resume
-            </a>
+            </Link>
           </div>
         </>
       ) : null}

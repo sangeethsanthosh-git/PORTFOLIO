@@ -23,16 +23,21 @@ export const metadata: Metadata = {
     "frontend developer",
     "freelancer",
   ],
-  authors: [{ name: "Sangeeth Santhosh", url: "https://sangeethsanthosh-git.github.io" }],
+  authors: [
+    {
+      name: "Sangeeth Santhosh",
+      url: "https://sangeethsanthosh-git.github.io/sangeethsanthosh-git.io",
+    },
+  ],
   openGraph: {
     title: "Sangeeth Santhosh | Developer & Designer",
     description:
       "Explore projects, services, and experience from Sangeeth Santhosh across frontend, backend, and UI-focused work.",
-    url: "https://sangeethsanthosh-git.github.io",
-    siteName: "sangeethsanthosh-git.github.io",
+    url: "https://sangeethsanthosh-git.github.io/sangeethsanthosh-git.io",
+    siteName: "sangeethsanthosh-git.io",
     images: [
       {
-        url: "/images/about.jpg",
+        url: "https://sangeethsanthosh-git.github.io/sangeethsanthosh-git.io/images/about.jpg",
         width: 1200,
         height: 630,
         alt: "Sangeeth Santhosh Portfolio",
@@ -46,9 +51,9 @@ export const metadata: Metadata = {
     title: "Sangeeth Santhosh | Web Developer & Designer",
     description: "Portfolio website of Sangeeth Santhosh showcasing development and design work.",
     creator: "@sangeeth_saa",
-    images: ["/images/about.jpg"],
+    images: ["https://sangeethsanthosh-git.github.io/sangeethsanthosh-git.io/images/about.jpg"],
   },
-  metadataBase: new URL("https://sangeethsanthosh-git.github.io"),
+  metadataBase: new URL("https://sangeethsanthosh-git.github.io/sangeethsanthosh-git.io"),
 };
 
 export default function RootLayout({
