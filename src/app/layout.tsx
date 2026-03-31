@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     "frontend developer",
     "freelancer",
   ],
-  authors: [{ name: "Sangeeth Santhosh", url: "https://sangeeth.dev" }],
+  authors: [{ name: "Sangeeth Santhosh", url: "https://sangeethsanthosh-git.github.io" }],
   openGraph: {
     title: "Sangeeth Santhosh | Developer & Designer",
     description:
       "Explore projects, services, and experience from Sangeeth Santhosh across frontend, backend, and UI-focused work.",
-    url: "https://sangeeth.dev",
-    siteName: "sangeeth.dev",
+    url: "https://sangeethsanthosh-git.github.io",
+    siteName: "sangeethsanthosh-git.github.io",
     images: [
       {
         url: "/images/about.jpg",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     creator: "@sangeeth_saa",
     images: ["/images/about.jpg"],
   },
-  metadataBase: new URL("https://sangeeth.dev"),
+  metadataBase: new URL("https://sangeethsanthosh-git.github.io"),
 };
 
 export default function RootLayout({
