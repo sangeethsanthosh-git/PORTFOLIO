@@ -8,17 +8,17 @@ import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
 
 const Skills = dynamic(() => import("@/components/Skills"), {
-  loading: () => <SectionFallback id="skills" className="bg-black text-white" label="Loading skills…" />,
+  loading: () => <SectionFallback id="skills" className="bg-black text-white" label="Loading skills..." />,
 });
 
 const Project = dynamic(() => import("@/components/Project"), {
   loading: () => (
-    <SectionFallback id="project" className="bg-black text-white" label="Loading projects…" />
+    <SectionFallback id="project" className="bg-black text-white" label="Loading projects..." />
   ),
 });
 
 const Work = dynamic(() => import("@/components/Work"), {
-  loading: () => <SectionFallback id="work" className="bg-[#2a2a2a] text-white" label="Loading work…" />,
+  loading: () => <SectionFallback id="work" className="bg-[#2a2a2a] text-white" label="Loading work..." />,
 });
 
 function SectionFallback({
@@ -31,8 +31,8 @@ function SectionFallback({
   label: string;
 }) {
   return (
-    <section id={id} className={`py-24 ${className}`}>
-      <div className="mx-auto max-w-5xl px-6 text-sm text-white/70">{label}</div>
+    <section id={id} className={`py-20 sm:py-24 ${className}`}>
+      <div className="mx-auto max-w-5xl px-4 text-sm text-white/70 sm:px-6 lg:px-8">{label}</div>
     </section>
   );
 }

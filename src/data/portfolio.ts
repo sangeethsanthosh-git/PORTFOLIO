@@ -149,9 +149,9 @@ export const projects: ProjectItem[] = [
     title: "Cartoonizer",
     description:
       "Cartoonizer is a Python-based web application that transforms images, GIFs, and short videos into cartoon-style visuals while staying usable even on systems without GPU support.",
-    backdropDesktop: "/images/cartoon.gif",
-    backdropMobile: "/images/cartoon-mb.gif",
-    preview: "/images/cartoon.gif",
+    backdropDesktop: "/images/cartoon.webp",
+    backdropMobile: "/images/cartoon-mb.webp",
+    preview: "/images/cartoon.webp",
     before: "/images/before.jpeg",
     after: "/images/after.jpg",
     github: "https://github.com/sangeethsanthosh-git/Cartoonizer",
@@ -161,9 +161,9 @@ export const projects: ProjectItem[] = [
     title: "Gistify",
     description:
       "Gistify turns long documents into concise summaries, extracted entities, and action plans through a fast, conversational interface built for students, researchers, and teams.",
-    backdropDesktop: "/images/gistify.gif",
-    backdropMobile: "/images/gistify-mb.gif",
-    preview: "/images/gistify.gif",
+    backdropDesktop: "/images/gistify.webp",
+    backdropMobile: "/images/gistify-mb.webp",
+    preview: "/images/gistify.webp",
     live: "https://gistify-c.vercel.app/",
     status: "completed",
   },
@@ -173,9 +173,9 @@ export const projects: ProjectItem[] = [
       "VidScoop is a Flask application that helps users download YouTube videos or audio in multiple formats through a simple web interface.",
     notice:
       "Educational use only. Downloading copyrighted content without permission may violate YouTube's terms of service.",
-    backdropDesktop: "/images/youtube.gif",
-    backdropMobile: "/images/youtube-mb.gif",
-    preview: "/images/youtube.gif",
+    backdropDesktop: "/images/youtube.webp",
+    backdropMobile: "/images/youtube-mb.webp",
+    preview: "/images/youtube.webp",
     status: "working",
   },
   {
@@ -192,18 +192,18 @@ export const projects: ProjectItem[] = [
     title: "EchoNotes",
     description:
       "EchoNotes converts live speech or uploaded audio files into readable notes, making voice capture and transcription much easier from the browser.",
-    backdropDesktop: "/images/echonotes.gif",
-    backdropMobile: "/images/echonotes-mb.gif",
-    preview: "/images/echonotes.gif",
+    backdropDesktop: "/images/echonotes.webp",
+    backdropMobile: "/images/echonotes-mb.webp",
+    preview: "/images/echonotes.webp",
     status: "working",
   },
   {
     title: "Portfolio",
     description:
       "This portfolio showcases my skills, projects, services, and experience through a modern single-page interface focused on clarity, responsiveness, and motion.",
-    backdropDesktop: "/images/portfolio.gif",
-    backdropMobile: "/images/portfolio-mb.gif",
-    preview: "/images/portfolio.gif",
+    backdropDesktop: "/images/portfolio.webp",
+    backdropMobile: "/images/portfolio-mb.webp",
+    preview: "/images/portfolio.webp",
     live: "https://sangeethsanthoshsa.vercel.app",
     status: "completed",
   },
@@ -293,3 +293,4 @@ export const socials = {
     { label: "Twitter/X", href: "https://twitter.com/sangeeth_saa", icon: "/icons/x.png" },
   ] satisfies SocialLink[],
 };
+

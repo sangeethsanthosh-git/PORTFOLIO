@@ -46,15 +46,23 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   const activeColor = colorMap[activeSection] ?? "text-[#225424]";
 
   return (
-    <header className="fixed left-1/2 top-4 z-50 flex w-[92%] max-w-6xl -translate-x-1/2 items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-5 py-4 shadow-lg backdrop-blur-md">
-      <a href="#top" className={`text-xl font-semibold transition-colors duration-300 ${activeColor}`}>
+    <header className="fixed left-1/2 top-3 z-50 flex w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 shadow-lg backdrop-blur-md sm:top-4 sm:w-[92%] sm:px-5 sm:py-4">
+      <a href="#top" className={`text-lg font-semibold transition-colors duration-300 sm:text-xl ${activeColor}`}>
         S.S
       </a>
 
-      <nav className="hidden items-center gap-6 text-sm md:flex">
+      <nav className="hidden items-center gap-5 text-sm lg:flex xl:gap-6">
         {navigation.map(({ id, label }) => (
           <Link
             key={id}
@@ -70,7 +78,7 @@ export default function Navbar() {
         <a
           href="/pdf/Sangeeth_Santhosh_Resume.pdf"
           download
-          className="rounded-full border border-[#225424]/20 px-4 py-2 font-medium text-[#225424] transition-transform duration-200 hover:scale-[1.02]"
+          className="rounded-full border border-[#225424]/20 px-4 py-2 font-medium text-[#225424] transition-transform duration-200 hover:scale-[1.02] xl:px-5"
         >
           Resume
         </a>
@@ -78,7 +86,7 @@ export default function Navbar() {
 
       <button
         type="button"
-        className={`z-50 transition-colors md:hidden ${activeColor}`}
+        className={`z-50 transition-colors lg:hidden ${activeColor}`}
         onClick={() => setMenuOpen((open) => !open)}
         aria-expanded={menuOpen}
         aria-label="Toggle navigation menu"
@@ -87,29 +95,40 @@ export default function Navbar() {
       </button>
 
       {menuOpen ? (
-        <div className="absolute right-4 top-16 flex w-56 flex-col gap-3 rounded-2xl border border-[#225424]/15 bg-[#faecd2] p-4 text-sm text-[#225424] shadow-xl md:hidden">
-          {navigation.map(({ id, label }) => (
-            <Link
-              key={id}
-              href={`#${id}`}
-              onClick={() => setMenuOpen(false)}
-              className={`transition-colors ${
-                activeSection === id ? `${colorMap[id]} font-semibold` : "text-[#225424]"
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
-
-          <a
-            href="/pdf/Sangeeth_Santhosh_Resume.pdf"
-            download
+        <>
+          <button
+            type="button"
+            aria-label="Close navigation menu"
             onClick={() => setMenuOpen(false)}
-            className="rounded-full border border-[#225424]/20 px-4 py-2 text-center font-medium transition-transform duration-200 hover:scale-[1.02]"
-          >
-            Resume
-          </a>
-        </div>
+            className="fixed inset-0 bg-black/20 backdrop-blur-[2px] lg:hidden"
+          />
+
+          <div className="fixed inset-x-4 top-20 z-50 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-3xl border border-[#225424]/15 bg-[#faecd2] p-5 text-sm text-[#225424] shadow-2xl lg:hidden sm:inset-x-auto sm:right-4 sm:w-[22rem]">
+            <div className="flex flex-col gap-2">
+              {navigation.map(({ id, label }) => (
+                <Link
+                  key={id}
+                  href={`#${id}`}
+                  onClick={() => setMenuOpen(false)}
+                  className={`rounded-2xl px-3 py-2 transition-colors ${
+                    activeSection === id ? "bg-white/50 font-semibold text-[#225424]" : "text-[#225424]"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+
+            <a
+              href="/pdf/Sangeeth_Santhosh_Resume.pdf"
+              download
+              onClick={() => setMenuOpen(false)}
+              className="mt-4 block rounded-full border border-[#225424]/20 px-4 py-3 text-center font-medium transition-transform duration-200 hover:scale-[1.02]"
+            >
+              Resume
+            </a>
+          </div>
+        </>
       ) : null}
     </header>
   );

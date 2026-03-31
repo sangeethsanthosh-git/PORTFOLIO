@@ -21,15 +21,19 @@ export default function Work() {
   };
 
   return (
-    <section id="work" className="relative bg-[#2a2a2a] py-24 text-white">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <section id="work" className="relative bg-[#2a2a2a] py-20 text-white sm:py-24">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 flex flex-col gap-5 sm:gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-[#faecd2]/80">Work</p>
-            <h2 className="mt-4 text-3xl font-semibold text-[#f9f5ed]">Recent Work Themes</h2>
+            <p className="text-xs uppercase tracking-[0.28em] text-[#faecd2]/80 sm:text-sm sm:tracking-[0.35em]">
+              Work
+            </p>
+            <h2 className="mt-4 text-2xl font-semibold text-[#f9f5ed] sm:text-3xl">
+              Recent Work Themes
+            </h2>
           </div>
 
-          <div className="flex gap-3">
+          <div className="hidden gap-3 sm:flex">
             <button
               type="button"
               onClick={() => scroll("left")}
@@ -49,8 +53,8 @@ export default function Work() {
           </div>
         </div>
 
-        <div ref={scrollRef} className="scrollbar-hide overflow-x-auto scroll-smooth">
-          <div className="flex gap-6 pb-2">
+        <div ref={scrollRef} className="scrollbar-hide overflow-x-auto scroll-smooth pb-1">
+          <div className="flex snap-x snap-mandatory gap-4 pb-3 sm:gap-6">
             {work.map((item, index) => (
               <motion.article
                 key={item.title}
@@ -58,7 +62,7 @@ export default function Work() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="relative min-h-[440px] min-w-[80vw] snap-start overflow-hidden rounded-[2rem] border border-white/10 shadow-lg md:min-w-[380px] lg:min-w-[420px]"
+                className="relative min-h-[360px] min-w-[86%] snap-start overflow-hidden rounded-[2rem] border border-white/10 shadow-lg sm:min-h-[400px] sm:min-w-[70%] md:min-w-[380px] lg:min-h-[440px] lg:min-w-[420px]"
               >
                 <Image
                   src={item.image}
@@ -73,11 +77,13 @@ export default function Work() {
                   style={{ backgroundColor: `rgba(0, 0, 0, ${item.overlayOpacity})` }}
                 />
 
-                <div className="relative z-10 flex h-full flex-col justify-between p-6">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/80">{item.subtitle}</p>
+                <div className="relative z-10 flex h-full flex-col justify-between p-5 sm:p-6">
+                  <p className="text-[10px] uppercase tracking-[0.24em] text-white/80 sm:text-xs sm:tracking-[0.35em]">
+                    {item.subtitle}
+                  </p>
 
                   <div>
-                    <h3 className="text-3xl font-medium text-white">{item.title}</h3>
+                    <h3 className="text-2xl font-medium text-white sm:text-3xl">{item.title}</h3>
                     <p className="mt-3 max-w-xs text-sm leading-6 text-white/75">{item.info}</p>
                   </div>
                 </div>
@@ -85,6 +91,8 @@ export default function Work() {
             ))}
           </div>
         </div>
+
+        <p className="mt-4 text-sm text-white/60 sm:hidden">Swipe sideways to explore the work cards.</p>
       </div>
     </section>
   );

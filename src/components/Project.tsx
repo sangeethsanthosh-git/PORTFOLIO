@@ -41,7 +41,7 @@ export default function Project() {
   return (
     <section
       id="project"
-      className="relative overflow-hidden bg-black py-24 text-white"
+      className="relative overflow-hidden bg-black py-20 text-white sm:py-24"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -77,14 +77,18 @@ export default function Project() {
 
       <div className="absolute inset-0 bg-black/65" />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 flex flex-col gap-5 sm:gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-[#faecd2]/80">Projects</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white">Selected Build Highlights</h2>
+            <p className="text-xs uppercase tracking-[0.28em] text-[#faecd2]/80 sm:text-sm sm:tracking-[0.35em]">
+              Projects
+            </p>
+            <h2 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
+              Selected Build Highlights
+            </h2>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 self-start">
             <button
               type="button"
               onClick={prev}
@@ -104,7 +108,7 @@ export default function Project() {
           </div>
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -120,15 +124,15 @@ export default function Project() {
                 transition={fadeTransition}
               >
                 {activeProject.status === "working" ? (
-                  <span className="inline-flex rounded-full bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-300">
+                  <span className="inline-flex rounded-full bg-orange-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-orange-300 sm:text-xs sm:tracking-[0.2em]">
                     Currently Working On
                   </span>
                 ) : null}
 
-                <h3 className="mt-4 text-4xl font-semibold leading-tight md:text-5xl">
+                <h3 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
                   {activeProject.title}
                 </h3>
-                <p className="mt-4 max-w-xl text-base leading-7 text-white/75">
+                <p className="mt-4 max-w-xl text-sm leading-7 text-white/75 sm:text-base">
                   {activeProject.description}
                 </p>
 
@@ -138,13 +142,13 @@ export default function Project() {
                   </p>
                 ) : null}
 
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                   {activeProject.live ? (
                     <a
                       href={activeProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-transform duration-200 hover:scale-[1.02]"
+                      className="rounded-full border border-white/20 bg-white/10 px-4 py-3 text-center text-sm font-medium text-white transition-transform duration-200 hover:scale-[1.02]"
                     >
                       View Live
                     </a>
@@ -155,7 +159,7 @@ export default function Project() {
                       href={activeProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-transform duration-200 hover:scale-[1.02]"
+                      className="rounded-full border border-white/20 bg-white/10 px-4 py-3 text-center text-sm font-medium text-white transition-transform duration-200 hover:scale-[1.02]"
                     >
                       GitHub Repo
                     </a>
@@ -164,7 +168,7 @@ export default function Project() {
               </motion.div>
             </AnimatePresence>
 
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="mt-8 flex flex-wrap justify-center gap-2 sm:justify-start">
               {projects.map((project, index) => {
                 const isActive = index === current;
                 const isWorking = project.status === "working";
@@ -189,7 +193,7 @@ export default function Project() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className="mx-auto w-full max-w-md"
+            className="mx-auto w-full max-w-md sm:max-w-lg lg:max-w-md"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -217,7 +221,7 @@ export default function Project() {
               </motion.div>
             </AnimatePresence>
 
-            <p className="mt-4 text-sm text-white/60">
+            <p className="mt-4 text-center text-sm text-white/60 sm:text-left">
               Swipe on mobile or use the controls to browse projects.
             </p>
           </motion.div>
@@ -275,10 +279,10 @@ function BeforeAfterSlider({ after, before }: { after: string; before: string })
 
       <div className="absolute inset-y-0 w-[2px] bg-white" style={{ left: `${position}%` }} />
 
-      <div className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white">
+      <div className="absolute left-3 top-3 rounded-full bg-black/55 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-white sm:left-4 sm:top-4 sm:px-3 sm:text-xs sm:tracking-[0.2em]">
         Before
       </div>
-      <div className="absolute right-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white">
+      <div className="absolute right-3 top-3 rounded-full bg-black/55 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-white sm:right-4 sm:top-4 sm:px-3 sm:text-xs sm:tracking-[0.2em]">
         After
       </div>
     </div>
