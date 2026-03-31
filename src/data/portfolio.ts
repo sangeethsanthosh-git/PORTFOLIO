@@ -204,7 +204,7 @@ export const projects: ProjectItem[] = [
     backdropDesktop: "/images/portfolio.webp",
     backdropMobile: "/images/portfolio-mb.webp",
     preview: "/images/portfolio.webp",
-    live: "https://sangeethsanthoshsa.vercel.app",
+   live:"https://sangeethsanthosh-git.github.io/",
     status: "completed",
   },
 ];
