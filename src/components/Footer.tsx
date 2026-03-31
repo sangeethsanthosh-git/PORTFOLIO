@@ -25,6 +25,8 @@ export default function Footer() {
             <h3 className="text-lg font-medium text-[#f9f5ed]">{socials.heading}</h3>
             <a
               href={socials.emailHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-4 inline-flex w-full justify-center rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm font-medium text-white transition-transform duration-200 hover:scale-[1.02] sm:w-auto"
             >
               Email Me

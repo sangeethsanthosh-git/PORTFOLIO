@@ -275,10 +275,14 @@ export const socials = {
   description:
     "Open to freelance work, collaborations, and product-focused conversations.",
   emailHref:
-    "mailto:sangeethsanthoshsaa@gmail.com?subject=Hi%20Sangeeth%0D%0A%0D%0A",
+    "https://mail.google.com/mail/?view=cm&fs=1&to=sangeethsanthoshsaa@gmail.com&su=Hi%20Sangeeth",
   copyrightName: "sangeethsanthoshsa",
   links: [
-    { label: "Email", href: "mailto:sangeethsanthoshsaa@gmail.com", icon: "/icons/gmail.png" },
+    {
+      label: "Email",
+      href: "https://mail.google.com/mail/?view=cm&fs=1&to=sangeethsanthoshsaa@gmail.com&su=Hi%20Sangeeth",
+      icon: "/icons/gmail.png",
+    },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/sangeethsanthoshsa",
