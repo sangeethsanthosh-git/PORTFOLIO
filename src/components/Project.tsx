@@ -7,6 +7,7 @@ import Image from "next/image";
 import { projects } from "@/data/portfolio";
 
 const fadeTransition = { duration: 0.4 };
+const isAnimatedAsset = (src: string) => src.endsWith(".webp") || src.endsWith(".gif");
 
 export default function Project() {
   const [current, setCurrent] = useState(0);
@@ -60,6 +61,7 @@ export default function Project() {
             aria-hidden="true"
             fill
             loading="lazy"
+            unoptimized={isAnimatedAsset(activeProject.backdropDesktop)}
             sizes="100vw"
             className="hidden object-cover lg:block"
           />
@@ -69,6 +71,9 @@ export default function Project() {
             aria-hidden="true"
             fill
             loading="lazy"
+            unoptimized={isAnimatedAsset(
+              activeProject.backdropMobile ?? activeProject.backdropDesktop
+            )}
             sizes="100vw"
             className="object-cover lg:hidden"
           />
@@ -213,6 +218,7 @@ export default function Project() {
                       alt={`${activeProject.title} preview`}
                       fill
                       loading="lazy"
+                      unoptimized={isAnimatedAsset(activeProject.preview)}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                     />
